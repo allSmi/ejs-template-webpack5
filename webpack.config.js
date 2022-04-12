@@ -47,15 +47,6 @@ module.exports = {
       'meta': {
         'theme-color': '#4285f4'
         // Will generate: <meta name="theme-color" content="#4285f4">
-      },
-      tags: {
-        bodyTags: [
-          {
-            tagName: 'style',
-            attributes: {},
-            innerHTML: '222'
-          }
-        ]
       }
     }),
     new MiniCssExtractPlugin()
