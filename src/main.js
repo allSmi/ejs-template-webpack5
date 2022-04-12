@@ -17,7 +17,7 @@ import './1.js'
 import img1 from './imgs/1.jpg'
 import img2 from './imgs/2.jpg'
 
-let a = 1111111
+let a = 111
 
 
 console.log(a);
@@ -49,7 +49,27 @@ let test = new Test
 console.log(test.a);
 console.log(test.b);
 
+let arr = [1,2,3]
+console.log(arr.includes(1));
 
+function * testYield(params) {
+  yield 1;
+  yield 2;
+}
+
+let i = testYield()
+console.log(i.next());
+console.log(i.next());
+
+let testPromise = new Promise((resolve,reject)=>{
+  setTimeout(() => {
+    resolve(1)
+  }, 2000);
+})
+
+testPromise.then(data=>{
+  console.log('data',data);
+})
 
 
 
