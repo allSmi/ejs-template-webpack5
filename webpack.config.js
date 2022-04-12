@@ -110,12 +110,14 @@ module.exports = {
           'sass-loader'
         ],
       },
-      // {
-      //   test: /\.(js)$/i,
-      //   use: [
-      //     'babel-loader'
-      //   ],
-      // },
+      {
+        test: /\.(js)$/i,
+        // exclude: [path.resolve(__dirname, 'node_modules')],
+        exclude: /(node_modules)/,
+        use: [
+          'babel-loader'
+        ],
+      },
     ],
   },
 

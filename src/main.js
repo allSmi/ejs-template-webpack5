@@ -32,6 +32,24 @@ $('#img').attr({
 
 console.log(__MODE__);
 
+function decorator(target) {
+  console.log('target',target);
+  target.prototype.b = 'xxx'
+  return target
+}
+
+@decorator
+class Test {
+  constructor(){
+    this.a = 1
+  }
+}
+
+let test = new Test
+console.log(test.a);
+console.log(test.b);
+
+
 
 
 
