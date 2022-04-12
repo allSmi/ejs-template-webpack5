@@ -69,7 +69,9 @@ module.exports = {
         // Will generate: <meta name="theme-color" content="#4285f4">
       }
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
+    })
   ],
   module: {
     rules: [

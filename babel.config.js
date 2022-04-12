@@ -1,13 +1,13 @@
 module.exports = {
   presets: [
+    // https://babeljs.io/docs/en/babel-preset-typescript
+    // '@babel/preset-typescript',
     [
       '@babel/preset-env',{
         useBuiltIns: 'usage',
         corejs: 3
       },
-    ],
-    // https://babeljs.io/docs/en/babel-preset-typescript
-    // '@babel/preset-typescript'
+    ]
   ],
   plugins: [
     [
@@ -16,9 +16,7 @@ module.exports = {
         legacy: true
       }
     ],
-    '@babel/plugin-proposal-class-properties'
-    // ['@babel/plugin-transform-runtime', {
-    //   corejs: 3
-    // }]
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-transform-runtime'
   ]
 }

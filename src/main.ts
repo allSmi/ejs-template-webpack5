@@ -12,62 +12,56 @@
 // 解决方案就是在webpack-dev-server模式下去掉 output.clean: true
 // -----------------
 import './common/css/global.scss'
-import $ from 'jquery'
-import img1 from './imgs/1.jpg'
-import img2 from './imgs/2.jpg'
+import './ts/img'
 
 import Greeter from './ts/decorator'
+import { testInterface } from './ts/interface'
+import { testType } from './ts/type'
+import './ts/async-await'
 
+console.log('当前环境为:', __MODE__);
+
+// ./ts/decorator
 let greeter = new Greeter("world")
 console.log(greeter.newProperty);
 
-let a = 1111111
-
-
-console.log(a);
-
-console.log('img1', img1);
-console.log('img2', img2);
-
-$('#img').attr({
-  src: img2
-})
-
-
-console.log(__MODE__);
-
-let arr = [1,2,3]
-console.log(arr.includes(1));
-
-class A {
-  a: number
-  constructor(){
-    this.a = 1
-  }
+// ./ts/interface
+let a: testInterface = {
+  a: 'x',
+  b: 1,
+  c: true
 }
 
-let b = new A()
-console.log(b.a);
+// ./ts/type
+let b: testType = 1
 
-
+// yield
 function * testYield() {
   yield 1;
   yield 2;
 }
-
 let i = testYield()
 console.log(i.next());
 console.log(i.next());
 
-let testPromise = new Promise((resolve,reject)=>{
+// promise
+let testPromise = new Promise<testInterface>((resolve,reject)=>{
   setTimeout(() => {
-    resolve(1)
+    resolve({
+      a: '111',
+      b: 111
+    })
   }, 2000);
 })
-
 testPromise.then(data=>{
-  console.log('data',data);
+  var a = data.a + data.c
+
+  console.log('data',a);
 })
+
+
+let arr = [1,2,3]
+console.log(arr.includes(1));
 
 
 
