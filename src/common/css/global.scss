@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #ccc;
+}
+
+.test-css {
+  display: flex;
+
+  width: 100px;
+  height: 100px;
+
+  transform: rotate(45deg);
+
+  background-image: url(../../imgs/1.jpg);
+}
