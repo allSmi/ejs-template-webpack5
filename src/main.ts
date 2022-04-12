@@ -13,9 +13,13 @@
 // -----------------
 import './common/css/global.scss'
 import $ from 'jquery'
-import './1.js'
 import img1 from './imgs/1.jpg'
 import img2 from './imgs/2.jpg'
+
+import Greeter from './ts/decorator'
+
+let greeter = new Greeter("world")
+console.log(greeter.newProperty);
 
 let a = 111
 
@@ -32,27 +36,21 @@ $('#img').attr({
 
 console.log(__MODE__);
 
-function decorator(target) {
-  console.log('target',target);
-  target.prototype.b = 'xxx'
-  return target
-}
+let arr = [1,2,3]
+console.log(arr.includes(1));
 
-@decorator
-class Test {
+class A {
+  a: number
   constructor(){
     this.a = 1
   }
 }
 
-let test = new Test
-console.log(test.a);
-console.log(test.b);
+let b = new A()
+console.log(b.a);
 
-let arr = [1,2,3]
-console.log(arr.includes(1));
 
-function * testYield(params) {
+function * testYield() {
   yield 1;
   yield 2;
 }

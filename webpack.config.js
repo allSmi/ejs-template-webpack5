@@ -9,7 +9,7 @@ const mode = 'development'
 
 module.exports = {
   mode,
-  entry: './src/main.js',
+  entry: './src/main.ts',
   devtool: 'source-map',
   devServer: {
     static: {
@@ -21,6 +21,9 @@ module.exports = {
     path: path.resolve(__dirname, './dist/'), // 绝对路径
     // clean: true, // 在webpack-dev-serve运行环境下，不要配置clean:true，具体查看 src/main.js 顶部记录
     publicPath: '/'
+  },
+  resolve:{
+    extensions: ['.ts', '.js']
   },
   externals: {
     'jquery': '$'
@@ -101,12 +104,19 @@ module.exports = {
         ],
       },
       {
-        test: /\.(js)$/i,
-        // exclude: [path.resolve(__dirname, 'node_modules')],
+        test: /\.(tsx?)$/i,
         exclude: /(node_modules)/,
         use: [
-          'babel-loader'
-        ],
+          'babel-loader',
+          'ts-loader'
+        ]
+      },
+      {
+        test: /\.(js)$/i,
+        exclude: /(node_modules)/,
+        use: [
+          'babel-loader',
+        ]
       },
     ],
   },

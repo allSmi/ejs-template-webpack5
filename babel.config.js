@@ -4,7 +4,9 @@ module.exports = {
       '@babel/preset-env',{
         useBuiltIns: 'usage',
         corejs: 3
-      }
+      },
+      // https://babeljs.io/docs/en/babel-preset-typescript
+      // '@babel/preset-typescript'
     ]
   ],
   plugins: [
