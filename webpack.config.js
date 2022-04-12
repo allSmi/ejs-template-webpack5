@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require('webpack')
 const path = require('path')
 const ejs = require('ejs')
 
@@ -26,9 +27,37 @@ module.exports = {
     'jquery': '$'
   },
   plugins: [
+    // 定义的属性值可以在 HtmlWebpackPlugin的模版中 以及 js 中使用
+    // 模版中 <%= __MODE__ %>
+    // js中 直接 var a = __MODE__
+    new webpack.DefinePlugin({
+      __MODE__: `"${mode}"`,
+      'process.env.NODE_ENV': `"${mode}"`
+    }),
+    // https://github.com/jantimon/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './template/index.template.ejs',
+      templateParameters: {
+        // <%= __MODE1__ %>
+        __MODE1__: '666' // 如果 webpack.DefinePlugin 中设置了同名属性，webpack.DefinePlugin中的优先级更高
+      },
+      // base: 'https://example.com', // https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/base
+      // inject: 'body',
+      title: 'ejs-template',
+      'meta': {
+        'theme-color': '#4285f4'
+        // Will generate: <meta name="theme-color" content="#4285f4">
+      },
+      tags: {
+        bodyTags: [
+          {
+            tagName: 'style',
+            attributes: {},
+            innerHTML: '222'
+          }
+        ]
+      }
     }),
     new MiniCssExtractPlugin()
   ],
@@ -38,41 +67,9 @@ module.exports = {
       {
         test: /\.ejs$/i,
         use: [{
-          loader: 'html-loader',
+          loader: 'ejs-loader',
           options: {
-            preprocessor: (content, loaderContext) => {
-              console.log('-----------ejs 开始编译---------');
-
-              let result
-
-              // var resourcePath = loaderContext.resourcePath;
-              // 需要将依赖的ejs文件加入到loaderContext中，
-              // 这样在webpack-dev-server运行时每次修改ejs文件才会重新编译自动刷新
-              loaderContext.addDependency(path.resolve(__dirname, 'template/index.template.ejs'))
-              loaderContext.addDependency(path.resolve(__dirname, 'template/header.ejs'))
-              loaderContext.addDependency(path.resolve(__dirname, 'template/header_sub.ejs'))
-
-              try {
-                result = ejs.render(
-                  content,
-                  {
-                    MODE: mode,
-                  },
-                  {
-                    filename: path.resolve(
-                      __dirname,
-                      './template/index.template.ejs'
-                    ),
-                  }
-                )
-              } catch (error) {
-                loaderContext.emitError(error)
-
-                return content
-              }
-              // console.log(result);
-              return result
-            },
+            esModule: false,
           },
         }]
       },

@@ -30,4 +30,8 @@ $('#img').attr({
 })
 
 
+console.log(__MODE__);
+
+
+
 

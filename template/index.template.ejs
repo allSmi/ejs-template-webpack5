@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-  <%- include('./header.ejs') %>
-
+  <%= require('./header.ejs')() %>
   <div>
-    hello world
+    hello world <%= __MODE__ %> <%= __MODE1__ %>
     <div class="test-css"></div>
 
-    <img style="width: 100px;height: 100px;" src="./imgs/1.jpg" alt="">
+    <img style="width: 100px;height: 100px;" src="<%= require('./imgs/1.jpg') %>" alt="">
 
-    <div>当前环境为: <%= MODE %></div>
+    <div>当前环境为: <%= __MODE__ %></div>
 
     <img id="img"></img>
 
