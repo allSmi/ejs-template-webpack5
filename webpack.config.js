@@ -16,8 +16,25 @@ module.exports = {
       directory: path.join(__dirname, 'template'), // 配置模版目录，才能监听到模版的变化
     },
   },
+  optimization: {
+    runtimeChunk: {
+      name: 'manifest'
+    },
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: 'vendor',
+          // chunks 有三个可选值，”initial”, “async” 和 “all”. 分别对应优化时只选择初始的chunks，所需要的chunks 还是所有chunk
+          chunks: 'initial',
+          priority: 100,
+          reuseExistingChunk: false,
+          test: /[\\/]node_modules[\\/]/
+        },
+      }
+    }
+  },
   output: {
-    filename: 'bundle.[contenthash].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, './dist/'), // 绝对路径
     // clean: true, // 在webpack-dev-serve运行环境下，不要配置clean:true，具体查看 src/main.js 顶部记录
     publicPath: '/'

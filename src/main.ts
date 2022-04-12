@@ -21,7 +21,7 @@ import Greeter from './ts/decorator'
 let greeter = new Greeter("world")
 console.log(greeter.newProperty);
 
-let a = 111
+let a = 1111111
 
 
 console.log(a);
