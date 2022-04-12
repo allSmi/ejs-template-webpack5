@@ -3,7 +3,7 @@ module.exports = {
     [
       '@babel/preset-env',{
         useBuiltIns: 'usage',
-        corejs: '3'
+        corejs: 3
       }
     ]
   ],
@@ -14,6 +14,8 @@ module.exports = {
         legacy: true
       }
     ],
-    '@babel/plugin-transform-runtime'
+    // ['@babel/plugin-transform-runtime', {
+    //   corejs: 3
+    // }]
   ]
 }
