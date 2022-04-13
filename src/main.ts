@@ -10,7 +10,7 @@
 // 导致每次变异都会先删除上一次的变异结果，如果js中没有依赖这个ejs文件，
 // 将导致既删除了上次的编译结果，新的编译结果中有没有重新编译，所有会导致图片404，
 // 解决方案就是在webpack-dev-server模式下去掉 output.clean: true
-// -----------------
+// ----------------
 import './common/css/global.scss'
 import './ts/img'
 
@@ -18,6 +18,8 @@ import Greeter from './ts/decorator'
 import { testInterface } from './ts/interface'
 import { testType } from './ts/type'
 import './ts/async-await'
+import './ts/enum'
+import './ts/namespace'
 
 console.log('当前环境为:', __MODE__);
 
