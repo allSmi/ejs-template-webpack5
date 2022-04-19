@@ -1,0 +1,32 @@
+.header {
+  color: $color3;
+  border: {
+    width: 1px;
+
+    color: $color2;
+
+    style: solid;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+  }
+
+  // 这种注释内容不会出现在生成的css文件中
+  // body[theme='theme1'] & {
+  //   img {
+  //     width: 150px;
+  //     height: 150px;
+  //   }
+  // }
+
+  /* 这种注释内容会出现在生成的css文件中 */
+  body.theme1 & {
+    // 局部变量
+    $w150: 150px;
+    img {
+      width: $w150;
+      height: $w150;
+    }
+  }
+}

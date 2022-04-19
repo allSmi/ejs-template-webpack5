@@ -1,0 +1,5 @@
+// variable 中 $color3: yellow !default;
+// 被这里的 $color3 覆盖
+$color3: #999;
+
+@import './variable.scss', './global.scss', './header.scss';

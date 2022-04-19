@@ -1,10 +1,11 @@
-* {
-  margin: 0;
-  padding: 0;
+body {
+  display: block;
+
+  background-color: #ccc;
 }
 
-body {
-  background-color: #ccc;
+:root {
+  --color1: red;
 }
 
 .test-css {
@@ -17,4 +18,16 @@ body {
 
   border-radius: 50%;
   background-image: url(../../imgs/1.jpg);
+}
+
+.color1 {
+  padding-top: 0;
+
+  color: var(--color1);
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+  .color1 {
+    padding-top: env(safe-area-inset-top);
+  }
 }

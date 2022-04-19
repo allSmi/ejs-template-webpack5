@@ -1,3 +1,6 @@
-<div>header <%= __MODE__ %></div>
-<img style="width: 100px;height: 100px;" src="<%= require('./imgs/2.jpg') %>" alt="" >
-<%= require('./header_sub.ejs')() %>
+<div class="header">
+  <div>header <%= __MODE__ %></div>
+  <img src="<%= require('./imgs/2.jpg') %>" alt="" >
+  <%= require('./header_sub.ejs')() %>
+</div>
+

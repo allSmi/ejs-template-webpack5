@@ -115,8 +115,8 @@ module.exports = {
       {
         test: /\.(scss|css)$/i,
         use: [
-          // 'style-loader',
-          MiniCssExtractPlugin.loader,
+          'style-loader',
+          // MiniCssExtractPlugin.loader, // dev-server时不提取
           'css-loader',
           'postcss-loader',
           'sass-loader'

@@ -11,7 +11,7 @@
 // 将导致既删除了上次的编译结果，新的编译结果中有没有重新编译，所有会导致图片404，
 // 解决方案就是在webpack-dev-server模式下去掉 output.clean: true
 // ----------------
-import './common/css/global.scss'
+import './common/css/index.scss'
 import './ts/img'
 
 import Greeter from './ts/decorator'

@@ -3,12 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title><%= htmlWebpackPlugin.options.title %></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: none;
+    }
+
+  </style>
 </head>
-<body>
+<body theme="theme1" class="theme1">
   <%= require('./header.ejs')() %>
-  <div>
+  <div class="color1">
     hello world <%= __MODE__ %> <%= __MODE1__ %>
     <div class="test-css"></div>
 
