@@ -44,15 +44,11 @@ const testPromise = new Promise<testInterface>((resolve) => {
     })
   }, 2000)
 })
-testPromise
-  .then((data) => {
-    const a = `${data.a}${data.b}`
+testPromise.then((data) => {
+  const a = `${data.a}${data.b}`
 
-    console.log('data', a)
-  })
-  .catch(() => {
-    // do nothing.
-  })
+  console.log('data', a)
+})
 
 const arr = [1, 2, 3]
 console.log(arr.includes(1))

@@ -1,13 +1,14 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    // parser: '@babel/eslint-parser', // 解析器
-    parser: '@typescript-eslint/parser',
-    // tsconfigRootDir: __dirname,
-    // project: ['./tsconfig.json']
-    // sourceType: 'module',
-    // ecmaVersion: 12
-  },
+  parser: '@typescript-eslint/parser',
+  // parserOptions: {
+  //   // parser: '@babel/eslint-parser', // 解析器
+  //   parser: '@typescript-eslint/parser',
+  //   // tsconfigRootDir: __dirname,
+  //   // project: ['./tsconfig.json']
+  //   // sourceType: 'module',
+  //   // ecmaVersion: 12
+  // },
   env: {
     browser: true,
     node: true,
@@ -17,7 +18,8 @@ module.exports = {
     // 'plugin:vue/vue3-recommended', // plugin-vue
     'eslint:recommended', // eslint
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    // 'prettier'
+    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended' // plugin-prettier
   ],
   plugins: ['@typescript-eslint'],
