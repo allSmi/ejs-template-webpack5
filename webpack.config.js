@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
 
 // const mode = 'production'
-const mode = 'development'
-
+const mode = process.env.NODE_ENV || 'development'
+console.log('---mode---', mode)
 
 module.exports = {
   mode,
@@ -13,8 +17,8 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'template'), // 配置模版目录，才能监听到模版的变化
-    },
+      directory: path.join(__dirname, 'template') // 配置模版目录，才能监听到模版的变化
+    }
   },
   optimization: {
     runtimeChunk: {
@@ -29,7 +33,7 @@ module.exports = {
           priority: 100,
           reuseExistingChunk: false,
           test: /[\\/]node_modules[\\/]/
-        },
+        }
       }
     }
   },
@@ -39,11 +43,11 @@ module.exports = {
     // clean: true, // 在webpack-dev-serve运行环境下，不要配置clean:true，具体查看 src/main.js 顶部记录
     publicPath: '/'
   },
-  resolve:{
+  resolve: {
     extensions: ['.ts', '.js']
   },
   externals: {
-    'jquery': '$'
+    jquery: '$'
   },
   plugins: [
     // 定义的属性值可以在 HtmlWebpackPlugin的模版中 以及 js 中使用
@@ -64,26 +68,30 @@ module.exports = {
       // base: 'https://example.com', // https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/base
       // inject: 'body',
       title: 'ejs-template',
-      'meta': {
+      meta: {
         'theme-color': '#4285f4'
         // Will generate: <meta name="theme-color" content="#4285f4">
       }
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
-    })
+    }),
+    new BundleAnalyzerPlugin(),
+    new CleanWebpackPlugin()
   ],
   module: {
     rules: [
       // https://webpack.docschina.org/loaders/html-loader/#templating
       {
         test: /\.ejs$/i,
-        use: [{
-          loader: 'ejs-loader',
-          options: {
-            esModule: false,
-          },
-        }]
+        use: [
+          {
+            loader: 'ejs-loader',
+            options: {
+              esModule: false
+            }
+          }
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
@@ -106,8 +114,8 @@ module.exports = {
               limit: 8192,
               publicPath: '/',
               esModule: false
-            },
-          },
+            }
+          }
         ],
         // webpack5 新增
         type: 'javascript/auto' //https://webpack.docschina.org/guides/asset-modules/#root
@@ -116,28 +124,22 @@ module.exports = {
         test: /\.(scss|css)$/i,
         use: [
           'style-loader',
-          // MiniCssExtractPlugin.loader, // dev-server时不提取
+          mode === 'production' ? MiniCssExtractPlugin.loader : '', // dev-server时不提取
           'css-loader',
           'postcss-loader',
           'sass-loader'
-        ],
+        ]
       },
       {
         test: /\.(tsx?)$/i,
         exclude: /(node_modules)/,
-        use: [
-          'babel-loader',
-          'ts-loader'
-        ]
+        use: ['babel-loader', 'ts-loader']
       },
       {
         test: /\.(js)$/i,
         exclude: /(node_modules)/,
-        use: [
-          'babel-loader',
-        ]
-      },
-    ],
-  },
-
+        use: ['babel-loader']
+      }
+    ]
+  }
 }
