@@ -1,2 +1,3 @@
 dist
 verify-commit.js
+**/*.test.js

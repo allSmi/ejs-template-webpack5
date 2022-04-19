@@ -10,9 +10,13 @@
     "build": "cross-env NODE_ENV=production webpack",
     "lint-staged": "lint-staged",
     "commitlint": "commitlint --config commitlint.config.js -e -V",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "jest": "jest"
   },
-  "sideEffects": ["*.css","*.scss"],
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "lint-staged": {
     "src/**/*.{js,ts}": [
       "prettier --write",
@@ -38,11 +42,14 @@
     "@babel/preset-typescript": "^7.16.7",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@types/jest": "^27.4.1",
     "@types/jquery": "^3.5.14",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "autoprefixer": "^10.4.4",
+    "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "clean-webpack-plugin": "^4.0.0",
     "commitizen": "^4.2.4",
     "commitlint": "^16.2.3",
@@ -56,6 +63,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
+    "jest": "^27.3.1",
     "lint-staged": "^12.3.8",
     "mini-css-extract-plugin": "^2.6.0",
     "node-sass": "^6.0.1",
@@ -65,6 +73,7 @@
     "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "^3.3.1",
     "thread-loader": "^3.0.4",
+    "ts-jest": "^27.1.4",
     "ts-loader": "^9.2.8",
     "typescript": "^4.5.4",
     "url-loader": "^4.1.1",
