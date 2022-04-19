@@ -21,6 +21,7 @@ import './ts/enum'
 import './ts/namespace'
 
 console.log('当前环境为:', __MODE__)
+console.log(1)
 
 // ./ts/decorator
 const greeter = new Greeter('world')
