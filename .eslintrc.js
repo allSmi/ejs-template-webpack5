@@ -2,9 +2,9 @@ module.exports = {
   root: true,
   parserOptions: {
     // parser: '@babel/eslint-parser', // 解析器
-    // parser: '@typescript-eslint/parser',
-    tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json']
+    parser: '@typescript-eslint/parser',
+    // tsconfigRootDir: __dirname,
+    // project: ['./tsconfig.json']
     // sourceType: 'module',
     // ecmaVersion: 12
   },
