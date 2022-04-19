@@ -1,6 +1,9 @@
+// # 自定义校验git message规则, .husky/commit-msg 配置 cross-env HUSKY_GIT_PARAMS=$1 node verify-commit.js
 const msgPath = process.env.HUSKY_GIT_PARAMS
 console.log('xxx', msgPath);
-// const msg = require('fs').readFileSync(msgPath, 'utf-8').trim()
+// console.log('xxx', process.env);
+const msg = require('fs').readFileSync(msgPath, 'utf-8').trim()
+console.log('msg', msg);
 
 // 提前定义好 commit message 的格式，如果不符合格式就退出程序。
 const commitRE =
