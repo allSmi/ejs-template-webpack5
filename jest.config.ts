@@ -3,7 +3,9 @@
 module.exports = {
   // preset: 'ts-jest',
   // testMatch: ['<rootDir>/tests/**/*.(spec|test).ts?(x)'],
-  testMatch: ['<rootDir>/src/**/*.(spec|test).(js|ts)']
+  testMatch: ['<rootDir>/src/**/*.(spec|test).(js|ts)'],
+  collectCoverage: true
+  // coverageDirectory: '<rootDir>/jestCoverage' // 默认是coverage
   // transform: {
   //   // 将.js后缀的文件使用babel-jest处理
   //   '^.+.js$': 'babel-jest',
