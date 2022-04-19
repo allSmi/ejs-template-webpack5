@@ -4,12 +4,55 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const SpeedMeasurePlugin = require('speed-measure-webpack-plugin') //引入插件
+// const smp = new SpeedMeasurePlugin() //创建插件对象
+
 const webpack = require('webpack')
 const path = require('path')
 
 // const mode = 'production'
 const mode = process.env.NODE_ENV || 'development'
 console.log('---mode---', mode)
+
+const proPlugins = [
+  new MiniCssExtractPlugin({
+    filename: '[name].[contenthash].css'
+  }),
+  new BundleAnalyzerPlugin(),
+  new CleanWebpackPlugin()
+]
+
+const basePlugins = [
+  // 定义的属性值可以在 HtmlWebpackPlugin的模版中 以及 js 中使用
+  // 模版中 <%= __MODE__ %>
+  // js中 直接 var a = __MODE__
+  new webpack.DefinePlugin({
+    __MODE__: `"${mode}"`,
+    'process.env.NODE_ENV': `"${mode}"`
+  }),
+  // https://github.com/jantimon/html-webpack-plugin
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: './template/index.template.ejs',
+    templateParameters: {
+      // <%= __MODE1__ %>
+      __MODE1__: '666' // 如果 webpack.DefinePlugin 中设置了同名属性，webpack.DefinePlugin中的优先级更高
+    },
+    // base: 'https://example.com', // https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/base
+    // inject: 'body',
+    title: 'ejs-template',
+    meta: {
+      'theme-color': '#4285f4'
+      // Will generate: <meta name="theme-color" content="#4285f4">
+    }
+  })
+]
+
+let plugins = basePlugins
+
+if (mode === 'production') {
+  plugins = plugins.concat(proPlugins)
+}
 
 module.exports = {
   mode,
@@ -21,6 +64,7 @@ module.exports = {
     }
   },
   optimization: {
+    // usedExports: true, // development
     runtimeChunk: {
       name: 'manifest'
     },
@@ -49,36 +93,7 @@ module.exports = {
   externals: {
     jquery: '$'
   },
-  plugins: [
-    // 定义的属性值可以在 HtmlWebpackPlugin的模版中 以及 js 中使用
-    // 模版中 <%= __MODE__ %>
-    // js中 直接 var a = __MODE__
-    new webpack.DefinePlugin({
-      __MODE__: `"${mode}"`,
-      'process.env.NODE_ENV': `"${mode}"`
-    }),
-    // https://github.com/jantimon/html-webpack-plugin
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './template/index.template.ejs',
-      templateParameters: {
-        // <%= __MODE1__ %>
-        __MODE1__: '666' // 如果 webpack.DefinePlugin 中设置了同名属性，webpack.DefinePlugin中的优先级更高
-      },
-      // base: 'https://example.com', // https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/base
-      // inject: 'body',
-      title: 'ejs-template',
-      meta: {
-        'theme-color': '#4285f4'
-        // Will generate: <meta name="theme-color" content="#4285f4">
-      }
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
-    }),
-    new BundleAnalyzerPlugin(),
-    new CleanWebpackPlugin()
-  ],
+  plugins,
   module: {
     rules: [
       // https://webpack.docschina.org/loaders/html-loader/#templating
@@ -123,8 +138,7 @@ module.exports = {
       {
         test: /\.(scss|css)$/i,
         use: [
-          'style-loader',
-          mode === 'production' ? MiniCssExtractPlugin.loader : '', // dev-server时不提取
+          mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader', // dev-server时不提取
           'css-loader',
           'postcss-loader',
           'sass-loader'
@@ -138,7 +152,7 @@ module.exports = {
       {
         test: /\.(js)$/i,
         exclude: /(node_modules)/,
-        use: ['babel-loader']
+        use: ['thread-loader', 'babel-loader']
       }
     ]
   }

@@ -7,7 +7,7 @@ module.exports = {
       {
         useBuiltIns: 'usage',
         corejs: 3,
-        modules: false
+        modules: false // 确保没有编译器将您的 ES2015 模块语法转换为 CommonJS 的
       }
     ]
   ],

@@ -14,6 +14,7 @@
 import './common/css/index.scss'
 import './ts/img'
 
+import './js/index'
 import Greeter from './ts/decorator'
 import { testInterface } from './ts/interface'
 import './ts/async-await'
