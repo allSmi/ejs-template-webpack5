@@ -1,6 +1,8 @@
 {
   "include": [
-    "src/**/*"
+    "src/**/*",
+    ".eslintrc.js",
+    "commitlint.config.js"
   ],
   "exclude": [
       "node_modules",

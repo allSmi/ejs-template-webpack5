@@ -16,54 +16,43 @@ import './ts/img'
 
 import Greeter from './ts/decorator'
 import { testInterface } from './ts/interface'
-import { testType } from './ts/type'
 import './ts/async-await'
 import './ts/enum'
 import './ts/namespace'
 
-console.log('当前环境为:', __MODE__);
+console.log('当前环境为:', __MODE__)
 
 // ./ts/decorator
-let greeter = new Greeter("world")
-console.log(greeter.newProperty);
-
-// ./ts/interface
-let a: testInterface = {
-  a: 'x',
-  b: 1,
-  c: true
-}
-
-// ./ts/type
-let b: testType = 1
+const greeter = new Greeter('world')
+console.log(greeter.newProperty)
 
 // yield
-function * testYield() {
-  yield 1;
-  yield 2;
+function* testYield() {
+  yield 1
+  yield 2
 }
-let i = testYield()
-console.log(i.next());
-console.log(i.next());
+const i = testYield()
+console.log(i.next())
+console.log(i.next())
 
 // promise
-let testPromise = new Promise<testInterface>((resolve,reject)=>{
+const testPromise = new Promise<testInterface>((resolve) => {
   setTimeout(() => {
     resolve({
       a: '111',
       b: 111
     })
-  }, 2000);
+  }, 2000)
 })
-testPromise.then(data=>{
-  var a = data.a + data.c
+testPromise
+  .then((data) => {
+    const a = `${data.a}${data.b}`
 
-  console.log('data',a);
-})
+    console.log('data', a)
+  })
+  .catch(() => {
+    // do nothing.
+  })
 
-
-let arr = [1,2,3]
-console.log(arr.includes(1));
-
-
-
+const arr = [1, 2, 3]
+console.log(arr.includes(1))
