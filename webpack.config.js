@@ -61,7 +61,8 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, 'template') // 配置模版目录，才能监听到模版的变化
-    }
+    },
+    open: true
   },
   optimization: {
     // usedExports: true, // development
