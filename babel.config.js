@@ -19,6 +19,7 @@ module.exports = function (api) {
       // plugins: ['transform-es2015-modules-commonjs']
     }
   } else {
+    // 打包环境
     return {
       presets: [
         // https://babeljs.io/docs/en/babel-preset-typescript
