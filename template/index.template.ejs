@@ -17,10 +17,35 @@
       opacity: 0;
     }
 
+    .svg-icon {
+      overflow: hidden;
+
+      width: 1em;
+      height: 1em;
+
+      vertical-align: -.15em;
+
+      fill: currentColor;
+    }
+    #svg-container {
+      width: 0;
+      height: 0;
+    }
+
   </style>
 </head>
 <body theme="theme1" class="theme1">
   <%= require('./header.ejs')() %>
+  <div id="svg-container">抽离出来的svg插入到这个标签里面</div>
+  <div>
+    <!-- <svg class="svg-icon">
+      <use xlink:href="/images/sprite.svg#apply-usage"></use>
+    </svg> -->
+    <svg class="svg-icon">
+      <use xlink:href="#apply"></use>
+    </svg>
+    haha
+  </div>
   <div class="color1">
     hello world <%= __MODE__ %> <%= __MODE1__ %>
     <div class="test-css"></div>

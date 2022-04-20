@@ -6,8 +6,11 @@ const a = new Promise<number>((resolve) => {
 
 async function test() {
   const x: number = await a
+  console.log(x)
 }
 
 test().then((res) => {
   console.log(res)
 })
+
+export { test }

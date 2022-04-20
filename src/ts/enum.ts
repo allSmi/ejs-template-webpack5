@@ -2,7 +2,7 @@ enum Direction {
   Up,
   Down,
   Left,
-  Right,
+  Right
 }
 
-console.log('Direction:', Direction.Down);
+console.log('Direction:', Direction.Down)

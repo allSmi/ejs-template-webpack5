@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin') //引入插件
 // const smp = new SpeedMeasurePlugin() //创建插件对象
 
@@ -46,6 +47,7 @@ const basePlugins = [
       // Will generate: <meta name="theme-color" content="#4285f4">
     }
   })
+  // new SpriteLoaderPlugin()
 ]
 
 let plugins = basePlugins
@@ -69,14 +71,40 @@ module.exports = {
     runtimeChunk: {
       name: 'manifest'
     },
+    // https://webpack.docschina.org/plugins/split-chunks-plugin/#optimizationsplitchunks
     splitChunks: {
       cacheGroups: {
+        svgGroup: {
+          name: 'svgGroup',
+          chunks: 'initial',
+          priority: 200,
+          reuseExistingChunk: true,
+          test: /[\\/]src[\\/]svg[\\/]/,
+          minSize: 1
+        },
+        // svgGroup: {
+        //   name: 'svgGroup',
+        //   chunks: 'initial',
+        //   // enforce: true,
+        //   minSize: 1,
+        //   test(module) {
+        //     // console.log(module)
+        //     // `module.resource` contains the absolute path of the file on disk.
+        //     // Note the usage of `path.sep` instead of / or \, for cross-platform compatibility.
+        //     const path = require('path')
+        //     return (
+        //       module.resource &&
+        //       module.resource.endsWith('.svg') &&
+        //       module.resource.includes(`${path.sep}svg${path.sep}`)
+        //     )
+        //   }
+        // },
         vendor: {
           name: 'vendor',
           // chunks 有三个可选值，”initial”, “async” 和 “all”. 分别对应优化时只选择初始的chunks，所需要的chunks 还是所有chunk
           chunks: 'initial',
           priority: 100,
-          reuseExistingChunk: false,
+          reuseExistingChunk: true,
           test: /[\\/]node_modules[\\/]/
         }
       }
@@ -110,7 +138,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        test: /\.(png|jpe?g|gif|webp)$/i,
         // ---------------
         // 记录一：排除html中引入的图片路径,
         // 因为html-loader已经处理了（其实是webpack5使用了asset modules处理了图片，如果不排除，又使用url-loader重复处理（这两者处理顺序有待查证），所有会导致出错），具体还要查看原因
@@ -135,6 +163,20 @@ module.exports = {
         ],
         // webpack5 新增
         type: 'javascript/auto' //https://webpack.docschina.org/guides/asset-modules/#root
+      },
+      {
+        test: /\.svg$/i,
+        use: [
+          {
+            loader: 'svg-sprite-loader'
+            // options: {
+            //   extract: true,
+            //   publicPath: '/images/'
+            // }
+          },
+          'svgo-loader'
+        ]
+        // type: 'javascript/auto'
       },
       {
         test: /\.(scss|css)$/i,
