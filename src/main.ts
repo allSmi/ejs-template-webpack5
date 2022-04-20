@@ -17,7 +17,6 @@ import './svg/apply.svg'
 import './svg/warn.svg'
 
 import './js/index'
-import Greeter from './ts/decorator'
 import { testInterface } from './ts/interface'
 import './ts/async-await'
 import './ts/enum'
@@ -29,10 +28,6 @@ import './ts/enum'
 // })
 
 console.log('当前环境为:', __MODE__)
-
-// ./ts/decorator
-const greeter = new Greeter('world')
-console.log(greeter.newProperty)
 
 // yield
 function* testYield() {
