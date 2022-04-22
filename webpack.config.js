@@ -7,6 +7,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 // const SpeedMeasurePlugin = require('speed-measure-webpack-plugin') //引入插件
 // const smp = new SpeedMeasurePlugin() //创建插件对象
+const FileListPlugin = require('./plugin/FileListPlugin')
+const EmitPlugin = require('./plugin/EmitPlugin')
+const ZipPlugin = require('./plugin/ZipPlugin')
 
 const webpack = require('webpack')
 const path = require('path')
@@ -46,8 +49,11 @@ const basePlugins = [
       'theme-color': '#4285f4'
       // Will generate: <meta name="theme-color" content="#4285f4">
     }
-  })
+  }),
   // new SpriteLoaderPlugin()
+  new FileListPlugin('list.md'),
+  new EmitPlugin(),
+  new ZipPlugin()
 ]
 
 let plugins = basePlugins
