@@ -117,7 +117,7 @@ module.exports = {
     }
   },
   output: {
-    filename: '[name].[contenthash].js',
+    filename: 'js/[name].[contenthash].js',
     path: path.resolve(__dirname, './dist/'), // 绝对路径
     // clean: true, // 在webpack-dev-serve运行环境下，不要配置clean:true，具体查看 src/main.js 顶部记录
     publicPath: '/'
