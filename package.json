@@ -16,7 +16,8 @@
   "sideEffects": [
     "*.css",
     "*.scss",
-    "*.svg"
+    "*.svg",
+    "./src/monitor.ts"
   ],
   "lint-staged": {
     "src/**/*.{js,ts}": [
@@ -88,6 +89,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
+    "axios": "^0.24.0",
     "core-js": "^3.20.2"
   }
 }

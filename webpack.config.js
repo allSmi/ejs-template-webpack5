@@ -23,7 +23,10 @@ const proPlugins = [
     filename: '[name].[contenthash].css'
   }),
   new BundleAnalyzerPlugin(),
-  new CleanWebpackPlugin()
+  new CleanWebpackPlugin(),
+  new FileListPlugin('list.md'),
+  new EmitPlugin(),
+  new ZipPlugin()
 ]
 
 const basePlugins = [
@@ -49,11 +52,8 @@ const basePlugins = [
       'theme-color': '#4285f4'
       // Will generate: <meta name="theme-color" content="#4285f4">
     }
-  }),
+  })
   // new SpriteLoaderPlugin()
-  new FileListPlugin('list.md'),
-  new EmitPlugin(),
-  new ZipPlugin()
 ]
 
 let plugins = basePlugins
@@ -73,7 +73,7 @@ module.exports = {
     open: true
   },
   optimization: {
-    // usedExports: true, // development
+    // usedExports: true, // development https://webpack.docschina.org/guides/tree-shaking/#root
     runtimeChunk: {
       name: 'manifest'
     },

@@ -11,6 +11,7 @@
 // 将导致既删除了上次的编译结果，新的编译结果中有没有重新编译，所有会导致图片404，
 // 解决方案就是在webpack-dev-server模式下去掉 output.clean: true
 // ----------------
+import { init as initMonitor } from './monitor'
 import './common/css/index.scss'
 import './ts/img'
 import './svg/apply.svg'
@@ -20,7 +21,11 @@ import './js/index'
 import { testInterface } from './ts/interface'
 import './ts/async-await'
 import './ts/enum'
+import initError from './error-test/index'
 
+initMonitor()
+
+initError()
 // window.addEventListener('DOMContentLoaded', () => {
 //   const usage = `<svg viewBox="${symbolData.viewBox}"><use xlink:href="${symbolData.url}"></use></svg>`
 //   const svgU = document.querySelector('#svg-container') as HTMLDivElement
