@@ -27,6 +27,14 @@ import './ts/enum'
 //   svgU.innerHTML = usage
 // })
 
+function getLocal(local: string) {
+  return import(
+    /* webpackChunkName: "language-[request]" */ './lang/' + local + '.js'
+  )
+}
+
+getLocal('zh-CN')
+
 console.log('当前环境为:', __MODE__)
 
 // yield
