@@ -1,0 +1,21 @@
+<%= require('./common/header.ejs')({
+  htmlWebpackPlugin: htmlWebpackPlugin,
+}) %>
+
+<div class="lowcode-page">
+  <div class="drag-target-container">
+    <div class="drag-target" draggable="true">
+      drag-target
+    </div>
+  </div>
+
+  <iframe src="./lowcode-iframe.html" frameborder="1"></iframe>
+</div>
+
+
+
+<%= require('./common/footer.ejs')({
+  htmlWebpackPlugin: htmlWebpackPlugin,
+}) %>
+
+

@@ -1,0 +1,42 @@
+<%= require('./common/header.ejs')({
+  htmlWebpackPlugin: htmlWebpackPlugin,
+  __MODE1__: __MODE1__
+}) %>
+
+
+<%= require('./header.ejs')() %>
+<div>
+  <!-- <svg class="svg-icon">
+    <use xlink:href="/images/sprite.svg#apply-usage"></use>
+  </svg> -->
+  <svg class="svg-icon">
+    <use xlink:href="#apply"></use>
+  </svg>
+  haha
+</div>
+<div>
+  <!-- <svg class="svg-icon">
+    <use xlink:href="/images/sprite.svg#apply-usage"></use>
+  </svg> -->
+  <svg class="svg-icon">
+    <use xlink:href="#warn"></use>
+  </svg>
+  heihei
+</div>
+<div class="color1">
+  hello world <%= __MODE__ %> <%= __MODE1__ %>
+  <div class="test-css"></div>
+
+  <img style="width: 100px;height: 100px;" src="<%= require('./imgs/1.jpg') %>" alt="">
+
+  <div>当前环境为: <%= __MODE__ %></div>
+
+  <img id="img" style="width: 100px;height: 100px;"></img>
+
+</div>
+
+
+<%= require('./common/footer.ejs')({
+  htmlWebpackPlugin: htmlWebpackPlugin,
+  __MODE1__: __MODE1__
+}) %>

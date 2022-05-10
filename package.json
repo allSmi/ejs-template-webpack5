@@ -19,7 +19,7 @@
     "*.css",
     "*.scss",
     "*.svg",
-    "./src/monitor.ts"
+    "./src/main.ts"
   ],
   "lint-staged": {
     "src/**/*.{js,ts}": [

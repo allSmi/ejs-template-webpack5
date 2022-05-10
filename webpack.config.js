@@ -41,18 +41,31 @@ const basePlugins = [
   // https://github.com/jantimon/html-webpack-plugin
   new HtmlWebpackPlugin({
     filename: 'index.html',
-    template: './template/index.template.ejs',
+    template: './template/index.ejs',
     templateParameters: {
       // <%= __MODE1__ %>
       __MODE1__: '666' // 如果 webpack.DefinePlugin 中设置了同名属性，webpack.DefinePlugin中的优先级更高
     },
     // base: 'https://example.com', // https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/base
     // inject: 'body',
-    title: 'ejs-template',
+    title: 'index',
     meta: {
       'theme-color': '#4285f4'
       // Will generate: <meta name="theme-color" content="#4285f4">
-    }
+    },
+    chunks: ['index']
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'lowcode.html',
+    template: './template/lowcode.ejs',
+    title: 'lowcode',
+    chunks: ['lowcode']
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'lowcode-iframe.html',
+    template: './template/lowcode-iframe.ejs',
+    title: 'lowcode-iframe',
+    chunks: ['lowcodeIframe']
   })
   // new SpriteLoaderPlugin()
 ]
@@ -65,7 +78,17 @@ if (mode === 'production') {
 
 module.exports = {
   mode,
-  entry: './src/main.ts',
+  entry: {
+    index: './src/page/index/index.ts',
+    lowcode: './src/page/lowcode/index.ts',
+    lowcodeIframe: './src/page/lowcodeIframe/index.ts'
+  },
+  output: {
+    filename: 'js/[name].[contenthash].js',
+    path: path.resolve(__dirname, './dist/'), // 绝对路径
+    // clean: true, // 在webpack-dev-serve运行环境下，不要配置clean:true，具体查看 src/main.js 顶部记录
+    publicPath: '/'
+  },
   devtool: 'source-map',
   devServer: {
     static: {
@@ -117,14 +140,11 @@ module.exports = {
       }
     }
   },
-  output: {
-    filename: 'js/[name].[contenthash].js',
-    path: path.resolve(__dirname, './dist/'), // 绝对路径
-    // clean: true, // 在webpack-dev-serve运行环境下，不要配置clean:true，具体查看 src/main.js 顶部记录
-    publicPath: '/'
-  },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, './src/')
+    }
   },
   externals: {
     jquery: '$'

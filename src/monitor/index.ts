@@ -11,11 +11,11 @@
 //   "./src/monitor.ts"
 // ],
 
-function aaa() {
-  console.log('asdfadsfadsf')
-}
+// function aaa() {
+//   console.log('monitor load')
+// }
 
-aaa()
+// aaa()
 
 export function init() {
   console.log('monitor begin----')
@@ -23,6 +23,8 @@ export function init() {
   window.addEventListener(
     'error',
     (e) => {
+      e.preventDefault()
+
       console.log('window.addEventListener', e)
     },
     true
@@ -32,7 +34,13 @@ export function init() {
     console.log('window.onerror', message, source, lineno, colno, error)
   }
 
-  window.addEventListener('unhandledrejection', (e) => {
-    console.log('unhandledrejection', e)
-  })
+  window.addEventListener(
+    'unhandledrejection',
+    (e) => {
+      e.preventDefault()
+
+      console.log('unhandledrejection', e)
+    },
+    false
+  )
 }
