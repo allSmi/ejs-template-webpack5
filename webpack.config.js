@@ -35,7 +35,8 @@ const basePlugins = [
   // js中 直接 var a = __MODE__
   new webpack.DefinePlugin({
     __MODE__: `"${mode}"`,
-    'process.env.NODE_ENV': `"${mode}"`
+    'process.env.NODE_ENV': `"${mode}"`,
+    __DEV__: 'false'
   }),
   // https://github.com/jantimon/html-webpack-plugin
   new HtmlWebpackPlugin({

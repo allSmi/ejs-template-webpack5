@@ -23,6 +23,25 @@ import './ts/async-await'
 import './ts/enum'
 import initError from './error-test/index'
 
+// __DEV__ 为 true 时，后面的代码会被treeshaking
+// false && 0
+__DEV__ && console.log('666999')
+
+// __DEV__ 为 true 时，后面的代码会被treeshaking
+// if (false) {}
+if (__DEV__) {
+  console.log('666999')
+}
+
+// 在ts里面定义全局变量
+// declare global {
+//   let hz: boolean
+// }
+// hz = true
+// console.log(hz)
+
+window.aaa = '111'
+
 initMonitor()
 
 initError()

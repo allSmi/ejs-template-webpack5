@@ -20,8 +20,9 @@ declare module '*.svg' {
 }
 
 declare const __MODE__: 'development' | 'production'
+declare const __DEV__: boolean
 
 // 定义window的属性
-// declare interface Window {
-//   aaa: string
-// }
+declare interface Window {
+  aaa: string
+}
