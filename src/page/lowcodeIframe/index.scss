@@ -1,5 +1,45 @@
 @import '../../common/css/index.scss';
 
-.lowcode-iframe {
+.lowcode-iframe-page {
+  text-align: center;
+
   color: $color3;
+  .title {
+    padding: 20px 0;
+  }
+  .screen-container {
+    display: inline-block;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    box-sizing: content-box;
+    height: 668px;
+    margin: 0 auto;
+
+    border: 1px solid #000;
+  }
+  // .screen-container::-webkit-scrollbar-track {
+  //   border-radius: 10px;
+  //   background: #ededed;
+  //   /*滚动条里面轨道*/
+  //   box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+  // }
+  .screen {
+    width: 375px;
+    // min-height: 668px;
+    padding-top: 1px;
+  }
+  .tip-placeholder {
+    line-height: 30px;
+
+    display: none;
+
+    height: 30px;
+    margin: 10px;
+
+    text-align: center;
+
+    color: #fff;
+    background-color: #ccc;
+  }
 }
