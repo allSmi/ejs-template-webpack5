@@ -206,7 +206,15 @@ module.exports = {
         // type: 'javascript/auto'
       },
       {
-        test: /\.(scss|css)$/i,
+        test: /\.(css)$/i,
+        use: [
+          mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader', // dev-server时不提取
+          'css-loader',
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /\.(scss)$/i,
         use: [
           mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader', // dev-server时不提取
           'css-loader',
