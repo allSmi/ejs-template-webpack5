@@ -1,6 +1,5 @@
-import './index.scss'
-
 import '@/main'
+import './index.scss'
 
 import '@/svg/apply.svg'
 import '@/svg/warn.svg'
