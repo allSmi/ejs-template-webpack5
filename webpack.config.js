@@ -11,6 +11,8 @@ const FileListPlugin = require('./plugin/FileListPlugin')
 const EmitPlugin = require('./plugin/EmitPlugin')
 const ZipPlugin = require('./plugin/ZipPlugin')
 
+const CopyPlugin = require('copy-webpack-plugin')
+
 const webpack = require('webpack')
 const path = require('path')
 
@@ -20,13 +22,16 @@ console.log('---mode---', mode)
 
 const proPlugins = [
   new MiniCssExtractPlugin({
-    filename: '[name].[contenthash].css'
+    filename: 'css/[name].[contenthash].css'
   }),
   new BundleAnalyzerPlugin(),
   new CleanWebpackPlugin(),
   new FileListPlugin('list.md'),
   new EmitPlugin(),
-  new ZipPlugin()
+  new ZipPlugin(),
+  new CopyPlugin({
+    patterns: ['public']
+  })
 ]
 
 const basePlugins = [
@@ -91,9 +96,14 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'template') // 配置模版目录，才能监听到模版的变化
-    },
+    static: [
+      {
+        directory: path.join(__dirname, 'template') // 配置模版目录，才能监听到模版的变化
+      },
+      {
+        directory: path.join(__dirname, 'public') // 配置模版目录，才能监听到模版的变化
+      }
+    ],
     open: true
   },
   optimization: {
