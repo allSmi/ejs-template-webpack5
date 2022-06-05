@@ -71,6 +71,12 @@ const basePlugins = [
     template: './template/lowcode-iframe.ejs',
     title: 'lowcode-iframe',
     chunks: ['lowcodeIframe']
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'dayjs.html',
+    template: './template/dayjs.ejs',
+    title: 'dayjs',
+    chunks: ['dayjs']
   })
   // new SpriteLoaderPlugin()
 ]
@@ -86,7 +92,8 @@ module.exports = {
   entry: {
     index: './src/page/index/index.ts',
     lowcode: './src/page/lowcode/index.ts',
-    lowcodeIframe: './src/page/lowcodeIframe/index.ts'
+    lowcodeIframe: './src/page/lowcodeIframe/index.ts',
+    dayjs: './src/page/dayjs/index.ts'
   },
   output: {
     filename: 'js/[name].[contenthash].js',
