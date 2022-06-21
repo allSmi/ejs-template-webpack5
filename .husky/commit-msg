@@ -1,7 +1,9 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run commitlint && npm run jest
+# npm run commitlint && npm run jest
 
 # 自定义校验规则
 # cross-env HUSKY_GIT_PARAMS=$1 node verify-commit.js
+
+cross-env HUSKY_GIT_PARAMS=$1 node verify-commit.js && npm run jest
