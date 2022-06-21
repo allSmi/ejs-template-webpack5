@@ -13,7 +13,8 @@
     "lint-staged": "lint-staged",
     "commitlint": "commitlint --config commitlint.config.js -e -V",
     "commit": "git-cz",
-    "jest": "jest"
+    "jest": "jest",
+    "prepare": "husky install"
   },
   "sideEffects": [
     "*.css",
